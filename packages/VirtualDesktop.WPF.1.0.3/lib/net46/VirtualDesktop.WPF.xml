@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VirtualDesktop.WPF</name>
+    </assembly>
+    <members>
+        <member name="M:WindowsDesktop.WindowExtensions.IsCurrentVirtualDesktop(System.Windows.Window)">
+            <summary>
+            Determines whether the window is located over the virtual desktop that current displayed.
+            </summary>
+        </member>
+        <member name="M:WindowsDesktop.WindowExtensions.GetCurrentDesktop(System.Windows.Window)">
+            <summary>
+            Returns a virtual desktop that window is located.
+            </summary>
+        </member>
+        <member name="M:WindowsDesktop.WindowExtensions.MoveToDesktop(System.Windows.Window,WindowsDesktop.VirtualDesktop)">
+            <summary>
+            Move this window to specified virtual desktop.
+            </summary>
+        </member>
+    </members>
+</doc>
