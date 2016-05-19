@@ -37,10 +37,15 @@ namespace VDWallpaperSwitcher
                 }
             }
 
-            var path = Directory.GetCurrentDirectory() + "\\" + index + ".bmp";
-            if (index != 0 && File.Exists(path))
+            if (index > 0)
             {
-                SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, path, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
+                var files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\img", "*", SearchOption.AllDirectories);
+                var path = files[(index - 1) % files.Length];
+
+                if (File.Exists(path))
+                {
+                    SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, path, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
+                }
             }
         }
     }
