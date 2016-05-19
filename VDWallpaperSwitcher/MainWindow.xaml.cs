@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using WindowsDesktop;
 using System.Runtime.InteropServices;
@@ -25,22 +27,13 @@ namespace VDWallpaperSwitcher
 
         private void CurrentChanged(object sender, VirtualDesktopChangedEventArgs e)
         {
-            var desktops = VirtualDesktop.GetDesktops();
-            var currentID = VirtualDesktop.Current.Id;
-            var index = 0;
-            for (var i = 0; i < desktops.Length; i++)
-            {
-                if (desktops[i].Id == currentID)
-                {
-                    index = i + 1;
-                    break;
-                }
-            }
+            var index = Array.IndexOf(VirtualDesktop.GetDesktops(),
+                VirtualDesktop.GetDesktops().First(i => i.Id == VirtualDesktop.Current.Id));
 
-            if (index > 0)
+            if (index > -1)
             {
                 var files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\img", "*", SearchOption.AllDirectories);
-                var path = files[(index - 1) % files.Length];
+                var path = files[index % files.Length];
 
                 if (File.Exists(path))
                 {
